@@ -69,6 +69,6 @@ public class TestDb {
 		List<Mark> marksList = res.getMarks();
 		marksList.addAll(List.of(marks[index]));
 		return res;
-
 	}
+
 }
