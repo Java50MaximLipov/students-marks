@@ -32,7 +32,7 @@ public class TestDb {
 	static final String PHONE4 = "054-1234567";
 	static final String PHONE5 = "055-1234567";
 	static final String PHONE6 = "056-1234567";
-	static final String PHONE7 = "051-1234567";
+	static final String PHONE7 = "051-1234568";
 
 	// Subjects
 	static final String SUBJECT1 = "Subject1";
@@ -47,7 +47,8 @@ public class TestDb {
 	static final LocalDate DATE4 = LocalDate.of(2024, 02, 15);
 
 	// marks
-	Mark[][] marks = { { new Mark(SUBJECT1, 70, DATE1), new Mark(SUBJECT1, 80, DATE2), new Mark(SUBJECT2, 80, DATE3) },
+	static Mark[][] marks = {
+			{ new Mark(SUBJECT1, 70, DATE1), new Mark(SUBJECT1, 80, DATE2), new Mark(SUBJECT2, 80, DATE3) },
 			{ new Mark(SUBJECT2, 70, DATE1), new Mark(SUBJECT3, 80, DATE2), new Mark(SUBJECT4, 80, DATE3) },
 			{ new Mark(SUBJECT3, 70, DATE1), new Mark(SUBJECT4, 80, DATE2), new Mark(SUBJECT1, 70, DATE3),
 					new Mark(SUBJECT4, 80, DATE4), },
@@ -55,6 +56,7 @@ public class TestDb {
 			{ new Mark(SUBJECT1, 100, DATE1), new Mark(SUBJECT2, 100, DATE2), new Mark(SUBJECT3, 100, DATE3),
 					new Mark(SUBJECT4, 100, DATE4), },
 			{} };
+
 	static Student[] students = { new Student(ID1, PHONE1), new Student(ID2, PHONE2), new Student(ID3, PHONE3),
 			new Student(ID4, PHONE4), new Student(ID5, PHONE5), new Student(ID6, PHONE6), new Student(ID7, PHONE7), };
 
