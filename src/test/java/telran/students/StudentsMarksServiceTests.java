@@ -84,4 +84,7 @@ class StudentsMarksServiceTests {
 		assertIterableEquals(expected, studentsService.getStudentsByPhonePrefix("051"));
 	}
 
+	// TODO tests of the interface methods for HW #71 (see StudentsService
+	// interface)
+
 }

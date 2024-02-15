@@ -1,5 +1,6 @@
 package telran.students.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -90,13 +91,13 @@ public class StudentsServiceImpl implements StudentsService {
 
 	@Override
 	public List<Student> getStudentsAllGoodMarks(int markThreshold) {
-		// TODO Auto-generated method stub
+		// Will be implemented on the CW #72
 		return null;
 	}
 
 	@Override
 	public List<Student> getStudentsFewMarks(int nMarks) {
-		// TODO Auto-generated method stub
+		// Will be implemented on the CW #72
 		return null;
 	}
 
@@ -118,6 +119,24 @@ public class StudentsServiceImpl implements StudentsService {
 		List<Student> res = idPhones.stream().map(ip -> new Student(ip.getId(), ip.getPhone())).toList();
 		log.debug("students {}", res);
 		return res;
+	}
+
+	@Override
+	public List<Student> getStudentsMarksDate(LocalDate date) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Student> getStudentsMarksMonthYear(int month, int year) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Student> getStudentsGoodSubjectMark(int markThreshold) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
