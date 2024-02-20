@@ -19,13 +19,10 @@ import telran.students.service.StudentsService;
 @SpringBootTest
 
 class StudentsMarksServiceTests {
-
 	@Autowired
 	StudentsService studentsService;
-
 	@Autowired
 	StudentRepo studentRepo;
-
 	@Autowired
 	TestDb testDb;
 
@@ -35,13 +32,16 @@ class StudentsMarksServiceTests {
 	}
 
 	@Test
+
 	void addStudentTest() {
+
 		assertEquals(studentNotExist, studentsService.addStudent(studentNotExist));
 		assertEquals(studentNotExist, studentRepo.findById(ID_NOT_EXIST).orElseThrow().build());
 		assertThrowsExactly(StudentIllegalStateException.class, () -> studentsService.addStudent(studentNotExist));
 	}
 
 	@Test
+
 	void updatePhoneNumberTest() {
 		assertEquals(studentUpdated, studentsService.updatePhoneNumber(ID1, PHONE_NOT_EXIST));
 		assertEquals(PHONE_NOT_EXIST, studentRepo.findById(ID1).orElseThrow().getPhone());
@@ -50,11 +50,14 @@ class StudentsMarksServiceTests {
 	}
 
 	@Test
+
 	void addMarkTest() {
+
 		assertFalse(studentRepo.findById(ID1).orElseThrow().getMarks().contains(markNotExist));
 		assertEquals(markNotExist, studentsService.addMark(ID1, markNotExist));
 		assertTrue(studentRepo.findById(ID1).orElseThrow().getMarks().contains(markNotExist));
 		assertThrowsExactly(StudentNotFoundException.class, () -> studentsService.addMark(ID1 + 1000, markNotExist));
+
 	}
 
 	@Test
@@ -107,5 +110,35 @@ class StudentsMarksServiceTests {
 		assertNull(studentRepo.findById(ID1).orElse(null));
 		assertThrowsExactly(StudentNotFoundException.class, () -> studentsService.removeStudent(ID1));
 	}
+
+	@Test
+	void getStudentsAllGoodMarksTest() {
+		List<Student> expected = List.of(students[4], students[5]);
+		assertIterableEquals(expected, studentsService.getStudentsAllGoodMarks(70));
+		assertTrue(studentsService.getStudentsAllGoodMarks(100).isEmpty());
+	}
+
+	@Test
+	void getStudentMarksSubjectTest() {
+		List<Mark> expected = List.of(new Mark(SUBJECT1, 70, DATE1), new Mark(SUBJECT1, 80, DATE2));
+		assertIterableEquals(expected, studentsService.getStudentMarksSubject(ID1, SUBJECT1));
+		assertTrue(studentsService.getStudentMarksSubject(ID1, SUBJECT3).isEmpty());
+		assertThrowsExactly(StudentNotFoundException.class,
+				() -> studentsService.getStudentMarksSubject(ID1 + 1000, SUBJECT3));
+	}
+
+	@Test
+	void getStudentsFewMarks() {
+		List<Student> expected = List.of(students[6]);
+		assertIterableEquals(expected, studentsService.getStudentsFewMarks(1));
+	}
+
+	@Test
+	void getStudentsAvgScoreGreaterTest() {
+		List<StudentAvgScore> expected = List.of(new StudentAvgScore(ID6, 100), new StudentAvgScore(ID5, 95));
+		assertIterableEquals(expected, studentsService.getStudentsAvgScoreGreater(90));
+
+	}
+	// TODO tests of the service methods of the HW #72
 
 }
